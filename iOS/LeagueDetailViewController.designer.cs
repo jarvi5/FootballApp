@@ -7,21 +7,12 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace FootballApp.iOS
 {
-    [Register ("ViewController")]
-    partial class ViewController
+    [Register ("LeagueDetailViewController")]
+    partial class LeagueDetailViewController
     {
-        [Outlet]
-        UIKit.UIButton Button { get; set; }
-
-        void ReleaseDesignerOutlets ()
-        {
-            if (Button != null) {
-                Button.Dispose ();
-                Button = null;
-            }
-        }
     }
 }
