@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Droid", "Droid\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.iOS", "iOS\FootballApp.iOS.csproj", "{CEECBF7B-1BD0-4578-816E-DD87CE211A63}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Tests", "FootballApp.Tests\FootballApp.Tests.csproj", "{00F0314A-AA5B-45A4-872D-413A60B074C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,5 +55,17 @@ Global
 		{CEECBF7B-1BD0-4578-816E-DD87CE211A63}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{CEECBF7B-1BD0-4578-816E-DD87CE211A63}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{CEECBF7B-1BD0-4578-816E-DD87CE211A63}.Debug|iPhone.Build.0 = Debug|iPhone
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Release|iPhone.Build.0 = Release|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{00F0314A-AA5B-45A4-872D-413A60B074C0}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
