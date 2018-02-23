@@ -22,5 +22,12 @@ namespace FootballApp.Data
             string result = await httpClient.GetStringAsync(url + "competitions/?season=" + season);
             return JsonConvert.DeserializeObject<IEnumerable<League>>(result);
         }
+
+        public async Task<IEnumerable<Team>> GetLeagueTable(int id)
+        {
+            string result = await httpClient.GetStringAsync(url + "competitions/" + id + "/leagueTable");
+            var leagueDetails = JsonConvert.DeserializeObject<LeagueDetails>(result);
+            return leagueDetails.standing;
+        }
     }
 }
