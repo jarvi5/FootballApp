@@ -26,6 +26,7 @@ namespace FootballApp.Droid
             base.OnListItemClick(l, v, position, id);
             var intent = new Intent(this, typeof(LeagueDetailActivity));
             intent.PutExtra("league", leagues[position].league);
+            intent.PutExtra("id", leagues[position].id);
             StartActivity(intent);
         }
     }

@@ -45,7 +45,16 @@ namespace FootballApp.Droid
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int myButton = 2131034112;
+			public const int Image = 2131034112;
+			
+			// aapt resource value: 0x7f050001
+			public const int Text = 2131034113;
+			
+			// aapt resource value: 0x7f050002
+			public const int Text1 = 2131034114;
+			
+			// aapt resource value: 0x7f050003
+			public const int Text2 = 2131034115;
 			
 			static Id()
 			{
@@ -61,7 +70,7 @@ namespace FootballApp.Droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int LeaguesView = 2130903040;
+			public const int TeamCellView = 2130903040;
 			
 			static Layout()
 			{
