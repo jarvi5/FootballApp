@@ -36,6 +36,7 @@ namespace FootballApp.iOS
             if(leagueDetail != null)
             {
                 leagueDetail.NavigationItem.Title = Leagues[selectedRow].league;
+                leagueDetail.id = Leagues[selectedRow].id;
             }
         }
     }

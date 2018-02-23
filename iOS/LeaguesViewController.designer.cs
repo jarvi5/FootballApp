@@ -14,5 +14,8 @@ namespace FootballApp.iOS
     [Register ("LeaguesViewController")]
     partial class LeaguesViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }
