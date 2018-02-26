@@ -120,6 +120,14 @@
     </Compile>
     <Compile Include="LeaguesViewControllerSource.cs" />
     <Compile Include="LeaguesDetailViewControllerSource.cs" />
+    <Compile Include="TeamDetailViewController.cs" />
+    <Compile Include="TeamDetailViewController.designer.cs">
+      <DependentUpon>TeamDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayersViewController.cs" />
+    <Compile Include="PlayersViewControllerSource.cs" />
+    <Compile Include="FixturesViewController.cs" />
+    <Compile Include="FixturesViewControllerSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -10,7 +10,7 @@ namespace FootballApp.iOS
     {
         public int id { get; set; }
         DataManager dataManager = new DataManager();
-        IList<Team> Teams;
+        IList<Team> teams;
 
         public LeagueDetailViewController (IntPtr handle) : base (handle)
         {
@@ -19,14 +19,29 @@ namespace FootballApp.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Teams = (IList<Team>)await dataManager.GetLeagueTable(id);
+            teams = (IList<Team>)await dataManager.GetLeagueTable(id);
             TableView.Source = new LeaguesDetailViewControllerSource<Team>(TableView)
             {
-                DataSource = Teams,
+                DataSource = teams,
                 Text = team => team.teamName,
                 Detail = team => "position: " + team.position + "\tpoints: " + team.points,
                 Image = team => team.crestURI
             };
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+
+            int selectedRow = TableView.IndexPathForSelectedRow.Row;
+            var teamDetail = segue.DestinationViewController as TeamDetailViewController;
+            Team team = teams[selectedRow];
+
+            if (teamDetail != null)
+            {
+                teamDetail.NavigationItem.Title = team.teamName;
+                teamDetail.teamUrl = team._links.team.href;
+            }
         }
     }
 }
