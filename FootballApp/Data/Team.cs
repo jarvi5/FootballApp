@@ -7,7 +7,7 @@ namespace FootballApp.Data
     {
         public int position { get; set; }
         public string teamName { get; set; }
-        public Object _links { get; set; }
+        public TeamLinks _links { get; set; }
         public int playedGames { get; set; }
         public string crestURI { get; set; }
         public int points { get; set; }

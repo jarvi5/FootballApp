@@ -29,5 +29,19 @@ namespace FootballApp.Data
             var leagueDetails = JsonConvert.DeserializeObject<LeagueDetails>(result);
             return leagueDetails.standing;
         }
+
+        public async Task<IEnumerable<Player>> GetPlayers(string url) 
+        {
+            string result = await httpClient.GetStringAsync(url + "/players");
+            var players = JsonConvert.DeserializeObject<Players>(result);
+            return players.players;
+        }
+
+        public async Task<IEnumerable<Fixture>> GetFixtures(string url)
+        {
+            string result = await httpClient.GetStringAsync(url + "/fixtures");
+            var fixtures = JsonConvert.DeserializeObject<Fixtures>(result);
+            return fixtures.fixtures;
+        }
     }
 }
