@@ -65,6 +65,11 @@
     <Compile Include="LeaguesListAdapter.cs" />
     <Compile Include="LeagueDetailActivity.cs" />
     <Compile Include="TeamsListAdapter.cs" />
+    <Compile Include="TeamDetailActivity.cs" />
+    <Compile Include="PlayersFragment.cs" />
+    <Compile Include="PlayersListAdapter.cs" />
+    <Compile Include="FixturesFragment.cs" />
+    <Compile Include="FixturesListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -80,6 +85,7 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\TeamCellView.axml" />
+    <AndroidResource Include="Resources\layout\TeamDetail.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\layout\" />

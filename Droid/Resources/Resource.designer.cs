@@ -56,6 +56,9 @@ namespace FootballApp.Droid
 			// aapt resource value: 0x7f050003
 			public const int Text2 = 2131034115;
 			
+			// aapt resource value: 0x7f050004
+			public const int frameLayout = 2131034116;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -71,6 +74,9 @@ namespace FootballApp.Droid
 			
 			// aapt resource value: 0x7f030000
 			public const int TeamCellView = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int TeamDetail = 2130903041;
 			
 			static Layout()
 			{
@@ -101,11 +107,14 @@ namespace FootballApp.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040001
-			public const int app_name = 2130968577;
-			
 			// aapt resource value: 0x7f040000
-			public const int hello = 2130968576;
+			public const int app_name = 2130968576;
+			
+			// aapt resource value: 0x7f040002
+			public const int fixture_label = 2130968578;
+			
+			// aapt resource value: 0x7f040001
+			public const int players_label = 2130968577;
 			
 			static String()
 			{

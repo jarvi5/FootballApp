@@ -15,7 +15,7 @@ namespace FootballApp.Tests
             Manager = new DataManager();
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("Accept", "application/json");
-            Assert.Equal(client.DefaultRequestHeaders.ToString(), Manager.HttpClient.DefaultRequestHeaders.ToString()) ;
+            Assert.Equal(client.DefaultRequestHeaders.ToString(), Manager.httpClient.DefaultRequestHeaders.ToString()) ;
         }
 
     }

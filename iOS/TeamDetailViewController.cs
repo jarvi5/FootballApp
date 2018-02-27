@@ -22,7 +22,7 @@ namespace FootballApp.iOS
             playersViewController.teamUrl = teamUrl;
 
             fixturesViewController = new FixturesViewController();
-            fixturesViewController.Title = "Fixture";
+            fixturesViewController.Title = "Fixtures";
             fixturesViewController.teamUrl = teamUrl;
 
             ViewControllers = new UIViewController[] {
