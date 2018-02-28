@@ -7,20 +7,20 @@ namespace FootballApp.iOS
 {
     public class PlayersViewControllerSource<Player> : UITableViewSource
     {
-        public readonly string cellStyleName = "PlayerCell";
-        IList<Player> dataSource;
-        UITableView tableView;
+        public readonly string CellStyleName = "PlayerCell";
+        IList<Player> PlayersList;
+        UITableView TableView;
 
         public IList<Player> DataSource
         {
             get
             {
-                return dataSource;
+                return PlayersList;
             }
             set
             {
-                dataSource = value;
-                tableView.ReloadData();
+                PlayersList = value;
+                TableView.ReloadData();
             }
         }
 
@@ -28,7 +28,7 @@ namespace FootballApp.iOS
 
         public PlayersViewControllerSource(UITableView tableView)
         {
-            this.tableView = tableView;
+            TableView = tableView;
         }
 
         public override nint NumberOfSections(UITableView tableView)
@@ -43,12 +43,12 @@ namespace FootballApp.iOS
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell(cellStyleName);
+            var cell = tableView.DequeueReusableCell(CellStyleName);
             if (cell == null)
             {
                 cell = new UITableViewCell(
                     UITableViewCellStyle.Subtitle,
-                    cellStyleName);
+                    CellStyleName);
             }
 
             Player item = DataSource[indexPath.Row];

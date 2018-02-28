@@ -7,9 +7,9 @@ namespace FootballApp.iOS
 {
     public class FixturesViewController : UITableViewController
     {
-        public string teamUrl { get; set; }
-        DataManager dataManager = new DataManager();
-        IList<Fixture> fixtures;
+        public string TeamUrl { get; set; }
+        DataManager DataManager = new DataManager();
+        IList<Fixture> Fixtures;
 
         public FixturesViewController()
         {
@@ -18,12 +18,12 @@ namespace FootballApp.iOS
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
-            fixtures = (IList<Fixture>)await dataManager.GetFixtures(teamUrl);
+            Fixtures = (IList<Fixture>)await DataManager.GetFixtures(TeamUrl);
             TableView.Source = new FixturesViewControllerSource<Fixtures>(TableView)
             {
-                DataSource = fixtures,
-                Text = fixture => fixture.homeTeamName + " vs " + fixture.awayTeamName,
-                Detail = fixture => "Date: " + fixture.date + "\tScore: " + fixture.result.goalsHomeTeam + " - " + fixture.result.goalsAwayTeam
+                DataSource = Fixtures,
+                Text = fixture => fixture.HomeTeamName + " vs " + fixture.AwayTeamName,
+                Detail = fixture => "Date: " + fixture.Date + "\tScore: " + fixture.Result.GoalsHomeTeam + " - " + fixture.Result.GoalsAwayTeam
             };
         }
     }

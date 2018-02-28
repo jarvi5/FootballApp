@@ -3,6 +3,6 @@ namespace FootballApp.Data
 {
     public class Link
     {
-        public string href { get; set; }
+        public string Href { get; set; }
     }
 }

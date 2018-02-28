@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -26,8 +25,8 @@ namespace FootballApp.Droid
         {
             base.OnListItemClick(l, v, position, id);
             var intent = new Intent(this, typeof(TeamDetailActivity));
-            intent.PutExtra("teamUrl",Teams[position]._links.team.href);
-            intent.PutExtra("teamName",Teams[position].teamName);
+            intent.PutExtra("teamUrl",Teams[position].Links.Team.Href);
+            intent.PutExtra("teamName",Teams[position].TeamName);
             StartActivity(intent);
         }
     }

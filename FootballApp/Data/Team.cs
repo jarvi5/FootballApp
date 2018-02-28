@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 
 namespace FootballApp.Data
 {
     public class Team
     {
-        public int position { get; set; }
-        public string teamName { get; set; }
-        public TeamLinks _links { get; set; }
-        public int playedGames { get; set; }
-        public string crestURI { get; set; }
-        public int points { get; set; }
-        public int goals { get; set; }
-        public int goalsAgainst { get; set; }
-        public int goalDifference { get; set; }
+        public int Position { get; set; }
+        public string TeamName { get; set; }
+        [JsonProperty("_links")]
+        public TeamLinks Links { get; set; }
+        public int PlayedGames { get; set; }
+        public string CrestURI { get; set; }
+        public int Points { get; set; }
+        public int Goals { get; set; }
+        public int GoalsAgainst { get; set; }
+        public int GoalDifference { get; set; }
     }
 }

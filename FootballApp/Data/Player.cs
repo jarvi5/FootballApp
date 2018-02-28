@@ -3,11 +3,11 @@ namespace FootballApp.Data
 {
     public class Player
     {
-        public string name { get; set; }
-        public string position { get; set; }
-        public int jerseyNumber { get; set; }
-        public Nullable<DateTime> dateOfBirth { get; set; }
-        public string nationality { get; set; }
-        public Nullable<DateTime> contractUntil { get; set; }
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public int JerseyNumber { get; set; }
+        public Nullable<DateTime> DateOfBirth { get; set; }
+        public string Nationality { get; set; }
+        public Nullable<DateTime> ContractUntil { get; set; }
     }
 }

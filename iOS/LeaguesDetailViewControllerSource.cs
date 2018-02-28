@@ -9,21 +9,20 @@ namespace FootballApp.iOS
 {
     public class LeaguesDetailViewControllerSource<Team> : UITableViewSource
     {
-        public readonly string cellStyleName = "TeamCell";
-
-        IList<Team> dataSource;
-        UITableView tableView;
+        public readonly string CellStyleName = "TeamCell";
+        IList<Team> TeamsList;
+        UITableView TableView;
 
         public IList<Team> DataSource
         {
             get
             {
-                return dataSource;
+                return TeamsList;
             }
             set
             {
-                dataSource = value;
-                tableView.ReloadData();
+                TeamsList = value;
+                TableView.ReloadData();
             }
         }
 
@@ -33,7 +32,7 @@ namespace FootballApp.iOS
 
         public LeaguesDetailViewControllerSource(UITableView tableView)
         {
-            this.tableView = tableView;
+            TableView = tableView;
         }
 
         public override nint NumberOfSections(UITableView tableView)
@@ -48,12 +47,12 @@ namespace FootballApp.iOS
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell(cellStyleName);
+            var cell = tableView.DequeueReusableCell(CellStyleName);
             if (cell == null)
             {
                 cell = new UITableViewCell(
                     UITableViewCellStyle.Subtitle,
-                    cellStyleName);
+                    CellStyleName);
             }
 
             Team item = DataSource[indexPath.Row];

@@ -8,13 +8,13 @@ namespace FootballApp.Droid
 {
     public class FixturesFragment : ListFragment
     {
-        DataManager dataManager = new DataManager();
-        IList<Fixture> fixtures;
-        string teamUrl;
+        DataManager DataManager = new DataManager();
+        IList<Fixture> Fixtures;
+        string TeamUrl;
 
         public FixturesFragment(string url)
         {
-            teamUrl = url;
+            TeamUrl = url;
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -34,8 +34,8 @@ namespace FootballApp.Droid
         public override async void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            fixtures = (IList<Fixture>)await dataManager.GetFixtures(teamUrl);
-            ListAdapter = new FixturesListAdapter(Activity, fixtures);
+            Fixtures = (IList<Fixture>)await DataManager.GetFixtures(TeamUrl);
+            ListAdapter = new FixturesListAdapter(Activity, Fixtures);
         }
     }
 }

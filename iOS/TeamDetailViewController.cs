@@ -6,9 +6,9 @@ namespace FootballApp.iOS
 {
     public partial class TeamDetailViewController : UITabBarController
     {
-        public string teamUrl { get; set; }
-        PlayersViewController playersViewController;
-        FixturesViewController fixturesViewController;
+        public string TeamUrl { get; set; }
+        PlayersViewController PlayersViewController;
+        FixturesViewController FixturesViewController;
 
         public TeamDetailViewController (IntPtr handle) : base (handle)
         {
@@ -17,17 +17,17 @@ namespace FootballApp.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            playersViewController = new PlayersViewController();
-            playersViewController.Title = "Players";
-            playersViewController.teamUrl = teamUrl;
+            PlayersViewController = new PlayersViewController();
+            PlayersViewController.Title = "Players";
+            PlayersViewController.TeamUrl = TeamUrl;
 
-            fixturesViewController = new FixturesViewController();
-            fixturesViewController.Title = "Fixtures";
-            fixturesViewController.teamUrl = teamUrl;
+            FixturesViewController = new FixturesViewController();
+            FixturesViewController.Title = "Fixtures";
+            FixturesViewController.TeamUrl = TeamUrl;
 
             ViewControllers = new UIViewController[] {
-                playersViewController,
-                fixturesViewController
+                PlayersViewController,
+                FixturesViewController
             };
         }
     }

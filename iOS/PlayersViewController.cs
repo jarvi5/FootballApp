@@ -6,9 +6,9 @@ namespace FootballApp.iOS
 {
     public class PlayersViewController : UITableViewController
     {
-        public string teamUrl { get; set; }
-        DataManager dataManager = new DataManager();
-        IList<Player> players;
+        public string TeamUrl { get; set; }
+        DataManager DataManager = new DataManager();
+        IList<Player> Players;
 
         public PlayersViewController()
         {
@@ -17,11 +17,11 @@ namespace FootballApp.iOS
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
-            players = (IList<Player>)await dataManager.GetPlayers(teamUrl);
+            Players = (IList<Player>)await DataManager.GetPlayers(TeamUrl);
             TableView.Source = new PlayersViewControllerSource<Player>(TableView)
             {
-                DataSource = players,
-                Text = player => "" + player.jerseyNumber + "\t" + player.name
+                DataSource = Players,
+                Text = player => "" + player.JerseyNumber + "\t" + player.Name
             };
         }
     }

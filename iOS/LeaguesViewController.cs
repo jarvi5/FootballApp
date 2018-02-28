@@ -9,7 +9,7 @@ namespace FootballApp.iOS
     public partial class LeaguesViewController : UITableViewController
     {
 
-        DataManager dataManager = new DataManager();
+        DataManager DataManager = new DataManager();
         IList<League> Leagues;
 
         public LeaguesViewController (IntPtr handle) : base (handle)
@@ -19,11 +19,11 @@ namespace FootballApp.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Leagues = (IList<League>)await dataManager.GetAllLeagues();
+            Leagues = (IList<League>)await DataManager.GetAllLeagues();
             TableView.Source = new LeaguesViewControllerSource<League>(TableView)
             {
                 DataSource = Leagues,
-                Text = league => league.caption
+                Text = league => league.Caption
             };
         }
 
@@ -35,8 +35,8 @@ namespace FootballApp.iOS
             var leagueDetail = segue.DestinationViewController as LeagueDetailViewController;
             if(leagueDetail != null)
             {
-                leagueDetail.NavigationItem.Title = Leagues[selectedRow].league;
-                leagueDetail.id = Leagues[selectedRow].id;
+                leagueDetail.NavigationItem.Title = Leagues[selectedRow].Name;
+                leagueDetail.Id = Leagues[selectedRow].Id;
             }
         }
     }

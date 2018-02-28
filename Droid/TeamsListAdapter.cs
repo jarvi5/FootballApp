@@ -13,23 +13,23 @@ namespace FootballApp.Droid
 {
     public class TeamsListAdapter : BaseAdapter<Team>
     {
-        IList<Team> teams;
-        Activity context;
+        IList<Team> Teams;
+        Activity Context;
 
         public TeamsListAdapter(Activity context, IList<Team> teams)
         {
-            this.teams = teams;
-            this.context = context;
+            Teams = teams;
+            Context = context;
         }
 
         public override Team this[int position]
         {
-            get { return teams[position]; }
+            get { return Teams[position]; }
         }
 
         public override int Count
         {
-            get { return teams.Count; }
+            get { return Teams.Count; }
         }
 
         public override long GetItemId(int position)
@@ -39,16 +39,16 @@ namespace FootballApp.Droid
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            Team item = teams[position];
+            Team item = Teams[position];
             View view = convertView; // re-use an existing view, if one is available
             if (view == null) // otherwise create a new one
-                view = context.LayoutInflater.Inflate(Resource.Layout.TeamCellView, null);
-            view.FindViewById<TextView>(Resource.Id.Text1).Text = item.teamName;
-            view.FindViewById<TextView>(Resource.Id.Text2).Text = "position: " + item.position + "\tpoints: " + item.points;
-            if (!string.IsNullOrEmpty(item.crestURI))
+                view = Context.LayoutInflater.Inflate(Resource.Layout.TeamCellView, null);
+            view.FindViewById<TextView>(Resource.Id.Text1).Text = item.TeamName;
+            view.FindViewById<TextView>(Resource.Id.Text2).Text = "position: " + item.Position + "\tpoints: " + item.Points;
+            if (!string.IsNullOrEmpty(item.CrestURI))
             {
                 ImageView image = view.FindViewById<ImageView>(Resource.Id.Image);
-                Picasso.With(context).Load(item.crestURI).Into(image);
+                Picasso.With(Context).Load(item.CrestURI).Into(image);
             }
             return view;
         }

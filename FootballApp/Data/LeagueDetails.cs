@@ -5,8 +5,8 @@ namespace FootballApp.Data
 {
     public class LeagueDetails
     {
-        public string leagueCaption { get; set; }
-        public int matchday { get; set; }
-        public IList<Team> standing { get; set; }
+        public string LeagueCaption { get; set; }
+        public int Matchday { get; set; }
+        public IList<Team> Standing { get; set; }
     }
 }

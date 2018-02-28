@@ -10,23 +10,23 @@ namespace FootballApp.Droid
     public class LeaguesListAdapter : BaseAdapter<League>
     {
 
-        IList<League> leagues;
-        Activity context;
+        IList<League> Leagues;
+        Activity Context;
 
         public LeaguesListAdapter(Activity context, IList<League> leagues)
         {
-            this.leagues = leagues;
-            this.context = context;
+            Leagues = leagues;
+            Context = context;
         }
 
         public override League this[int position]
         {
-            get { return leagues[position]; }
+            get { return Leagues[position]; }
         }
 
         public override int Count
         {
-            get { return leagues.Count; }
+            get { return Leagues.Count; }
         }
 
         public override long GetItemId(int position)
@@ -38,8 +38,8 @@ namespace FootballApp.Droid
         {
             View view = convertView; // re-use an existing view, if one is available
             if (view == null) // otherwise create a new one
-                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = leagues[position].caption;
+                view = Context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
+            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = Leagues[position].Caption;
             return view;
         }
     }

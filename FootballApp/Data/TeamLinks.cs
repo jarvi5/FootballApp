@@ -4,6 +4,6 @@ namespace FootballApp.Data
 {
     public class TeamLinks
     {
-        public Link team { get; set; }
+        public Link Team { get; set; }
     }
 }

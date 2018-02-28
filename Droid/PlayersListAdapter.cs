@@ -8,23 +8,23 @@ namespace FootballApp.Droid
 {
     public class PlayersListAdapter : BaseAdapter<Player>
     {
-        IList<Player> players;
-        Activity context;
+        IList<Player> Players;
+        Activity Context;
 
         public PlayersListAdapter(Activity context, IList<Player> players)
         {
-            this.players = players;
-            this.context = context;
+            Players = players;
+            Context = context;
         }
 
         public override Player this[int position]
         {
-            get { return players[position]; }
+            get { return Players[position]; }
         }
 
         public override int Count
         {
-            get { return players.Count; }
+            get { return Players.Count; }
         }
 
         public override long GetItemId(int position)
@@ -36,9 +36,9 @@ namespace FootballApp.Droid
         {
             View view = convertView;
             if (view == null)
-                view = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
-            Player player = players[position];
-            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = player.jerseyNumber + "\t" + player.name;
+                view = Context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
+            Player player = Players[position];
+            view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = player.JerseyNumber + "\t" + player.Name;
             return view;
         }
     }   

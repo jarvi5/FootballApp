@@ -6,31 +6,30 @@ using UIKit;
 
 namespace FootballApp.iOS
 {
-    public class LeaguesViewControllerSource<T> : UITableViewSource
+    public class LeaguesViewControllerSource<League> : UITableViewSource
     {
-        public readonly string cellStyleName = "LeagueCell";
-
-        IList<League> dataSource;
-        UITableView tableView;
+        public readonly string CellStyleName = "LeagueCell";
+        IList<League> LeaguesList;
+        UITableView TableView;
 
         public IList<League> DataSource
         {
             get
             {
-                return dataSource;
+                return LeaguesList;
             }
             set
             {
-                dataSource = value;
-                tableView.ReloadData();
+                LeaguesList = value;
+                TableView.ReloadData();
             }
         }
 
-        public Func<T, string> Text { get; set; }
+        public Func<League, string> Text { get; set; }
 
         public LeaguesViewControllerSource (UITableView tableView)
         {
-            this.tableView = tableView;
+            TableView = tableView;
         }
 
         public override nint NumberOfSections(UITableView tableView)
@@ -45,17 +44,17 @@ namespace FootballApp.iOS
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell(cellStyleName);
+            var cell = tableView.DequeueReusableCell(CellStyleName);
             if (cell == null)
             {
                 cell = new UITableViewCell(
                     UITableViewCellStyle.Default,
-                    cellStyleName);
+                    CellStyleName);
             }
 
             League item = DataSource[indexPath.Row];
 
-            cell.TextLabel.Text = item.caption;
+            cell.TextLabel.Text = Text(item);
 
             return cell;
         }

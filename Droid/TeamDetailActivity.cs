@@ -7,7 +7,7 @@ namespace FootballApp.Droid
     [Activity(Label = "Team Detail")]
     public class TeamDetailActivity : Activity
     {
-        Fragment[] fragments;
+        Fragment[] Fragments;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -16,7 +16,7 @@ namespace FootballApp.Droid
             SetContentView(Resource.Layout.TeamDetail);
             Title = Intent.GetStringExtra("teamName");
 
-            fragments = new Fragment[]
+            Fragments = new Fragment[]
             {
                 new PlayersFragment(Intent.GetStringExtra("teamUrl")),
                 new FixturesFragment(Intent.GetStringExtra("teamUrl"))
@@ -39,7 +39,7 @@ namespace FootballApp.Droid
             ActionBar.Tab tab = (ActionBar.Tab)sender;
 
             Log.Debug("The tab {0} has been selected.", tab.Text);
-            Fragment fragment = fragments[tab.Position];
+            Fragment fragment = Fragments[tab.Position];
             tabEventArgs.FragmentTransaction.Replace(Resource.Id.frameLayout, fragment);
         }
 

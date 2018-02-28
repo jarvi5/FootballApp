@@ -8,9 +8,9 @@ namespace FootballApp.iOS
 {
     public partial class LeagueDetailViewController : UITableViewController
     {
-        public int id { get; set; }
-        DataManager dataManager = new DataManager();
-        IList<Team> teams;
+        public int Id { get; set; }
+        DataManager DataManager = new DataManager();
+        IList<Team> Teams;
 
         public LeagueDetailViewController (IntPtr handle) : base (handle)
         {
@@ -19,13 +19,13 @@ namespace FootballApp.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            teams = (IList<Team>)await dataManager.GetLeagueTable(id);
+            Teams = (IList<Team>)await DataManager.GetLeagueTable(Id);
             TableView.Source = new LeaguesDetailViewControllerSource<Team>(TableView)
             {
-                DataSource = teams,
-                Text = team => team.teamName,
-                Detail = team => "position: " + team.position + "\tpoints: " + team.points,
-                Image = team => team.crestURI
+                DataSource = Teams,
+                Text = team => team.TeamName,
+                Detail = team => "position: " + team.Position + "\tpoints: " + team.Points,
+                Image = team => team.CrestURI
             };
         }
 
@@ -35,12 +35,12 @@ namespace FootballApp.iOS
 
             int selectedRow = TableView.IndexPathForSelectedRow.Row;
             var teamDetail = segue.DestinationViewController as TeamDetailViewController;
-            Team team = teams[selectedRow];
+            Team team = Teams[selectedRow];
 
             if (teamDetail != null)
             {
-                teamDetail.NavigationItem.Title = team.teamName;
-                teamDetail.teamUrl = team._links.team.href;
+                teamDetail.NavigationItem.Title = team.TeamName;
+                teamDetail.TeamUrl = team.Links.Team.Href;
             }
         }
     }

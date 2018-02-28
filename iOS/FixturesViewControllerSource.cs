@@ -8,20 +8,20 @@ namespace FootballApp.iOS
 {
     public class FixturesViewControllerSource<Fixtures> : UITableViewSource
     {
-        public readonly string cellStyleName = "FixtureCell";
-        IList<Fixture> dataSource;
-        UITableView tableView;
+        public readonly string CellStyleName = "FixtureCell";
+        IList<Fixture> FixturesList;
+        UITableView TableView;
 
         public IList<Fixture> DataSource
         {
             get
             {
-                return dataSource;
+                return FixturesList;
             }
             set
             {
-                dataSource = value;
-                tableView.ReloadData();
+                FixturesList = value;
+                TableView.ReloadData();
             }
         }
 
@@ -30,7 +30,7 @@ namespace FootballApp.iOS
 
         public FixturesViewControllerSource(UITableView tableView)
         {
-            this.tableView = tableView;
+            TableView = tableView;
         }
 
         public override nint NumberOfSections(UITableView tableView)
@@ -45,12 +45,12 @@ namespace FootballApp.iOS
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell(cellStyleName);
+            var cell = tableView.DequeueReusableCell(CellStyleName);
             if (cell == null)
             {
                 cell = new UITableViewCell(
                     UITableViewCellStyle.Subtitle,
-                    cellStyleName);
+                    CellStyleName);
             }
 
             Fixture item = DataSource[indexPath.Row];

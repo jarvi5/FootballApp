@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace FootballApp.Data
 {
     public class Players
     {
-        public IList<Player> players { get; set; }
+        [JsonProperty("players")]
+        public IList<Player> PlayersList { get; set; }
     }
 }
