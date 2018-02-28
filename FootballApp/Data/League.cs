@@ -10,8 +10,8 @@ namespace FootballApp.Data
         [JsonProperty("league")]
         public string Name { get; set; }
         public string Year { get; set; }
-        public int NumberOfTeams { get; set; }
-        public int NumberOfGames { get; set; }
-        public DateTime LastUpdated { get; set; }
+        public int? NumberOfTeams { get; set; }
+        public int? NumberOfGames { get; set; }
+        public DateTime? LastUpdated { get; set; }
     }
 }

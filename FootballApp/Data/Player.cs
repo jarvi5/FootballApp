@@ -5,9 +5,9 @@ namespace FootballApp.Data
     {
         public string Name { get; set; }
         public string Position { get; set; }
-        public int JerseyNumber { get; set; }
-        public Nullable<DateTime> DateOfBirth { get; set; }
+        public int? JerseyNumber { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public string Nationality { get; set; }
-        public Nullable<DateTime> ContractUntil { get; set; }
+        public DateTime? ContractUntil { get; set; }
     }
 }

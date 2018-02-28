@@ -3,7 +3,7 @@ namespace FootballApp.Data
 {
     public class Result
     {
-        public Nullable<int> GoalsHomeTeam { get; set; }
-        public Nullable<int> GoalsAwayTeam { get; set; }
+        public int? GoalsHomeTeam { get; set; }
+        public int? GoalsAwayTeam { get; set; }
     }
 }
