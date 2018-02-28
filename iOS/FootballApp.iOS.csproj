@@ -97,6 +97,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="LeagueDetail\" />
+    <Folder Include="TeamDetail\" />
+    <Folder Include="TeamDetail\Players\" />
+    <Folder Include="TeamDetail\Fixtures\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -114,20 +118,20 @@
     <Compile Include="LeaguesViewController.designer.cs">
       <DependentUpon>LeaguesViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="LeagueDetailViewController.cs" />
-    <Compile Include="LeagueDetailViewController.designer.cs">
+    <Compile Include="LeaguesViewControllerSource.cs" />
+    <Compile Include="LeagueDetail\LeagueDetailViewController.cs" />
+    <Compile Include="LeagueDetail\LeagueDetailViewController.designer.cs">
       <DependentUpon>LeagueDetailViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="LeaguesViewControllerSource.cs" />
-    <Compile Include="LeaguesDetailViewControllerSource.cs" />
-    <Compile Include="TeamDetailViewController.cs" />
-    <Compile Include="TeamDetailViewController.designer.cs">
+    <Compile Include="LeagueDetail\LeaguesDetailViewControllerSource.cs" />
+    <Compile Include="TeamDetail\TeamDetailViewController.cs" />
+    <Compile Include="TeamDetail\TeamDetailViewController.designer.cs">
       <DependentUpon>TeamDetailViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayersViewController.cs" />
-    <Compile Include="PlayersViewControllerSource.cs" />
-    <Compile Include="FixturesViewController.cs" />
-    <Compile Include="FixturesViewControllerSource.cs" />
+    <Compile Include="TeamDetail\Players\PlayersViewController.cs" />
+    <Compile Include="TeamDetail\Players\PlayersViewControllerSource.cs" />
+    <Compile Include="TeamDetail\Fixtures\FixturesViewController.cs" />
+    <Compile Include="TeamDetail\Fixtures\FixturesViewControllerSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
