@@ -8,7 +8,7 @@ namespace FootballApp.Droid
 {
     public class PlayersFragment : ListFragment
     {
-        DataManager DataManager = new DataManager();
+        ApiDataManager DataManager = new ApiDataManager();
         IList<Player> Players;
         string TeamUrl;
 
@@ -33,7 +33,8 @@ namespace FootballApp.Droid
         public override async void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            Players = (IList<Player>)await DataManager.GetPlayers(TeamUrl);
+            await DataManager.LoadData(TeamUrl + "/players");
+            Players = (IList<Player>)DataManager.GetPlayers();
             ListAdapter = new PlayersListAdapter(Activity, Players);
         }
     }

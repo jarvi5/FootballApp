@@ -11,13 +11,14 @@ namespace FootballApp.Droid
     {
 
         IList<Team> Teams;
-        DataManager dataManager = new DataManager();
+        IDataManager<string> DataManager = new ApiDataManager();
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Title = Intent.GetStringExtra("league");
-            Teams = (IList<Team>)await dataManager.GetLeagueTable(Intent.GetIntExtra("id",-1));
+            await DataManager.LoadData("http://www.football-data.org/v1/competitions/"+ Intent.GetIntExtra("id",-1) + "/leagueTable");
+            Teams = (IList<Team>)DataManager.GetLeagueTable();
             ListAdapter = new TeamsListAdapter(this, Teams);
         }
 

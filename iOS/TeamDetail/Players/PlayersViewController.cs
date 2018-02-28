@@ -7,7 +7,7 @@ namespace FootballApp.iOS
     public class PlayersViewController : UITableViewController
     {
         public string TeamUrl { get; set; }
-        DataManager DataManager = new DataManager();
+        ApiDataManager DataManager = new ApiDataManager();
         IList<Player> Players;
 
         public PlayersViewController()
@@ -17,7 +17,8 @@ namespace FootballApp.iOS
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Players = (IList<Player>)await DataManager.GetPlayers(TeamUrl);
+            await DataManager.LoadData(TeamUrl + "/players");
+            Players = (IList<Player>)DataManager.GetPlayers();
             TableView.Source = new PlayersViewControllerSource<Player>(TableView)
             {
                 DataSource = Players,

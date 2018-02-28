@@ -9,7 +9,7 @@ namespace FootballApp.iOS
     public partial class LeaguesViewController : UITableViewController
     {
 
-        DataManager DataManager = new DataManager();
+        ApiDataManager DataManager = new ApiDataManager();
         IList<League> Leagues;
 
         public LeaguesViewController (IntPtr handle) : base (handle)
@@ -19,7 +19,8 @@ namespace FootballApp.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Leagues = (IList<League>)await DataManager.GetAllLeagues();
+            await DataManager.LoadData("http://www.football-data.org/v1/competitions/?season=2017");
+            Leagues = (IList<League>)DataManager.GetAllLeagues();
             TableView.Source = new LeaguesViewControllerSource<League>(TableView)
             {
                 DataSource = Leagues,

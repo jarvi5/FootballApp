@@ -11,22 +11,23 @@ namespace FootballApp.Droid
     [Activity(Label = "Leagues", MainLauncher = true, Icon = "@mipmap/icon")]
     public class LeaguesActivity : ListActivity
     {
-        DataManager dataManager = new DataManager();
-        IList<League> leagues;
+        IDataManager<string> DataManager = new ApiDataManager();
+        IList<League> Leagues;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            leagues = (IList<League>)await dataManager.GetAllLeagues();
-            ListAdapter = new LeaguesListAdapter(this,leagues);
+            await DataManager.LoadData("http://www.football-data.org/v1/competitions/?season=2017");
+            Leagues = (IList<League>)DataManager.GetAllLeagues();
+            ListAdapter = new LeaguesListAdapter(this,Leagues);
         }
 
         protected override void OnListItemClick(ListView l, View v, int position, long id)
         {
             base.OnListItemClick(l, v, position, id);
             var intent = new Intent(this, typeof(LeagueDetailActivity));
-            intent.PutExtra("league", leagues[position].Name);
-            intent.PutExtra("id", leagues[position].Id);
+            intent.PutExtra("league", Leagues[position].Name);
+            intent.PutExtra("id", Leagues[position].Id);
             StartActivity(intent);
         }
     }

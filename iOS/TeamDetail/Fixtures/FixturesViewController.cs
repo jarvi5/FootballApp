@@ -8,7 +8,7 @@ namespace FootballApp.iOS
     public class FixturesViewController : UITableViewController
     {
         public string TeamUrl { get; set; }
-        DataManager DataManager = new DataManager();
+        ApiDataManager DataManager = new ApiDataManager();
         IList<Fixture> Fixtures;
 
         public FixturesViewController()
@@ -18,7 +18,8 @@ namespace FootballApp.iOS
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Fixtures = (IList<Fixture>)await DataManager.GetFixtures(TeamUrl);
+            await DataManager.LoadData(TeamUrl + "/fixtures");
+            Fixtures = (IList<Fixture>)DataManager.GetFixtures();
             TableView.Source = new FixturesViewControllerSource<Fixtures>(TableView)
             {
                 DataSource = Fixtures,
