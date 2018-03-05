@@ -8,7 +8,7 @@ using FootballApp.Data;
 
 namespace FootballApp.Droid
 {
-    [Activity(Label = "Leagues", MainLauncher = true, Icon = "@mipmap/icon")]
+    [Activity(Label = "Leagues")]
     public class LeaguesActivity : ListActivity
     {
         IDataManager<string> DataManager = new ApiDataManager();
