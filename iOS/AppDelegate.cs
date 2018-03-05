@@ -1,5 +1,7 @@
-﻿using Foundation;
+﻿using System;
+using Foundation;
 using UIKit;
+using Firebase.Core;
 
 namespace FootballApp.iOS
 {
@@ -9,6 +11,13 @@ namespace FootballApp.iOS
     public class AppDelegate : UIApplicationDelegate
     {
         // class-level declarations
+        bool isAuthenticated 
+        {
+            get 
+            {
+                return NSUserDefaults.StandardUserDefaults.BoolForKey("isAuthenticated");
+            }
+        }
 
         public override UIWindow Window
         {
@@ -16,12 +25,63 @@ namespace FootballApp.iOS
             set;
         }
 
+        public UIStoryboard MainStoryboard
+        {
+            get { return UIStoryboard.FromName("Main", NSBundle.MainBundle); }
+        }
+
+        //Creates an instance of viewControllerName from storyboard
+        public UIViewController GetViewController(UIStoryboard storyboard, string viewControllerName)
+        {
+            return storyboard.InstantiateViewController(viewControllerName);
+        }
+
+        //Sets the RootViewController of the Apps main window with an option for animation.
+        public void SetRootViewController(UIViewController rootViewController, bool animate)
+        {
+            if (animate)
+            {
+                var transitionType = UIViewAnimationOptions.TransitionFlipFromRight;
+
+                Window.RootViewController = rootViewController;
+                UIView.Transition(Window, 0.5, transitionType,
+                                  () => Window.RootViewController = rootViewController,
+                                  null);
+            }
+            else
+            {
+                Window.RootViewController = rootViewController;
+            }
+        }
+
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-            // Override point for customization after application launch.
-            // If not required for your application you can safely delete this method
+            App.Configure();
+
+            if (isAuthenticated)
+            {
+                //We are already authenticated, so go to the main tab bar controller;
+                var mainController = GetViewController(MainStoryboard, "MainNavigationController");
+                SetRootViewController(mainController, false);
+            }
+            else
+            {
+                //User needs to log in, so show the Login View Controlller
+                var loginViewController = GetViewController(MainStoryboard, "LoginPageViewController") as LoginPageViewController;
+                loginViewController.OnLoginSuccess += LoginViewController_OnLoginSuccess;
+                SetRootViewController(loginViewController, false);
+            }
 
             return true;
+        }
+
+        void LoginViewController_OnLoginSuccess(object sender, EventArgs e)
+        {
+            //We have successfully Logged In
+            var mainController = GetViewController(MainStoryboard, "MainNavigationController");
+            SetRootViewController(mainController, true);
+
+            NSUserDefaults.StandardUserDefaults.SetBool(true, "isAuthenticated");
         }
 
         public override void OnResignActivation(UIApplication application)
