@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using Android.App;
 using Android.OS;
 using Android.Views;
 using FootballApp.Data;
 
 namespace FootballApp.Droid
 {
-    public class PlayersFragment : ListFragment
+    public class PlayersFragment : Android.Support.V4.App.ListFragment
     {
         ApiDataManager DataManager = new ApiDataManager();
         IList<Player> Players;

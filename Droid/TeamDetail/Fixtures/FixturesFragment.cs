@@ -6,7 +6,7 @@ using FootballApp.Data;
 
 namespace FootballApp.Droid
 {
-    public class FixturesFragment : ListFragment
+    public class FixturesFragment : Android.Support.V4.App.ListFragment
     {
         ApiDataManager DataManager = new ApiDataManager();
         IList<Fixture> Fixtures;

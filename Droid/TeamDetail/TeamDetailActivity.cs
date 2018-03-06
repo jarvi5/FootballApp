@@ -1,47 +1,29 @@
-﻿using Android.App;
-using Android.OS;
-using Android.Util;
+﻿using Android.OS;
+using Android.Support.V4.View;
+using Android.Support.V4.App;
+using Android.App;
 
 namespace FootballApp.Droid
 {
     [Activity(Label = "Team Detail")]
-    public class TeamDetailActivity : Activity
+    public class TeamDetailActivity : FragmentActivity
     {
-        Fragment[] Fragments;
+        Android.Support.V4.App.Fragment[] Fragments;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
             SetContentView(Resource.Layout.TeamDetail);
             Title = Intent.GetStringExtra("teamName");
-
-            Fragments = new Fragment[]
+            ViewPager viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
+            Fragments = new Android.Support.V4.App.Fragment[]
             {
                 new PlayersFragment(Intent.GetStringExtra("teamUrl")),
                 new FixturesFragment(Intent.GetStringExtra("teamUrl"))
             };
 
-            AddTabToActionBar(Resource.String.players_label);
-            AddTabToActionBar(Resource.String.fixture_label);
+            TeamAdapter teamAdapter = new TeamAdapter(SupportFragmentManager, Fragments);
+            viewPager.Adapter = teamAdapter;
         }
-
-        void AddTabToActionBar(int labelResourceId)
-        {
-            ActionBar.Tab tab = ActionBar.NewTab()
-                                         .SetText(labelResourceId);
-            tab.TabSelected += TabOnTabSelected;
-            ActionBar.AddTab(tab);
-        }
-
-        void TabOnTabSelected(object sender, ActionBar.TabEventArgs tabEventArgs)
-        {
-            ActionBar.Tab tab = (ActionBar.Tab)sender;
-
-            Log.Debug("The tab {0} has been selected.", tab.Text);
-            Fragment fragment = Fragments[tab.Position];
-            tabEventArgs.FragmentTransaction.Replace(Resource.Id.frameLayout, fragment);
-        }
-
     }
 }
