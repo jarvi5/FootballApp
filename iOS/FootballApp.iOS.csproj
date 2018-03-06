@@ -116,6 +116,7 @@
     <Folder Include="TeamDetail\Fixtures\" />
     <Folder Include="Login\" />
     <Folder Include="Leagues\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -150,6 +151,10 @@
     <Compile Include="Login\LoginPageViewController.cs" />
     <Compile Include="Login\LoginPageViewController.designer.cs">
       <DependentUpon>LoginPageViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SettingsViewController.cs" />
+    <Compile Include="Settings\SettingsViewController.designer.cs">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

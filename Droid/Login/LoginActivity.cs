@@ -56,6 +56,7 @@ namespace FootballApp.Droid
                 ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
                 ISharedPreferencesEditor editor = preferences.Edit();
                 editor.PutBoolean("isAuthenticated", true);
+                editor.PutString("email", user.Email);
                 editor.Commit();
                 StartActivity(intent);
                 Finish();

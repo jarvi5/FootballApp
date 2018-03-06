@@ -2,12 +2,12 @@ using System;
 using UIKit;
 using Firebase.Auth;
 using FootballApp.Helpers;
+using Foundation;
 
 namespace FootballApp.iOS
 {
     public partial class LoginPageViewController : UIViewController
     {
-        public event EventHandler OnLoginSuccess;
         Auth Auth;
 
         public LoginPageViewController (IntPtr handle) : base (handle)
@@ -42,7 +42,11 @@ namespace FootballApp.iOS
 
             if(String.Equals("javicamdo@gmail.com", EmailTextView.Text) && String.Equals("passwd123", PasswordTextView.Text))
             {
-                OnLoginSuccess(sender, new EventArgs());
+                NSUserDefaults.StandardUserDefaults.SetBool(true, "isAuthenticated");
+                NSUserDefaults.StandardUserDefaults.SetString(EmailTextView.Text, "email");
+                var storyboard = UIStoryboard.FromName("Main", NSBundle.MainBundle);
+                var mainController = storyboard.InstantiateViewController("MainNavigationController");
+                PresentViewController(mainController, true, null);
             }
 
             else

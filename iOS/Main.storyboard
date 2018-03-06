@@ -31,7 +31,13 @@
                             <outlet property="delegate" destination="210" id="214"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="211" title="Leagues"/>
+                    <navigationItem key="navigationItem" id="211" title="Leagues">
+                        <barButtonItem key="rightBarButtonItem" id="5780" systemItem="compose">
+                            <connections>
+                                <segue id="5906" destination="2459" kind="show" identifier="SettingsSegue"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="217" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -93,6 +99,13 @@
                             <outlet property="delegate" destination="230" id="233"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="5781" title="League Detail">
+                        <barButtonItem key="rightBarButtonItem" id="5782" systemItem="compose">
+                            <connections>
+                                <segue id="5956" destination="2459" kind="show" identifier="SettingsSegue"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="236" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -107,6 +120,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections/>
+                    <navigationItem key="navigationItem" id="5783" title="Team Detail">
+                        <barButtonItem key="rightBarButtonItem" id="5784" systemItem="compose">
+                            <connections>
+                                <segue id="5996" destination="2459" kind="show" identifier="SettingsSegue"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1319" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -177,7 +197,7 @@
         </scene>
         <scene sceneID="2458">
             <objects>
-                <viewController id="2459" sceneMemberID="viewController">
+                <viewController id="2459" sceneMemberID="viewController" customClass="SettingsViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2456"/>
                         <viewControllerLayoutGuide type="bottom" id="2457"/>
@@ -186,11 +206,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6469" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="338" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="6477" firstItem="6469" firstAttribute="height" constant="21"/>
+                                </constraints>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6470" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="367" width="374" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <constraints>
+                                    <constraint id="6478" firstItem="6470" firstAttribute="height" constant="30"/>
+                                </constraints>
+                                <connections>
+                                    <segue id="7326" destination="1686" kind="showDetail"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="6471" firstItem="6469" firstAttribute="trailing" secondItem="2460" secondAttribute="trailingMargin"/>
+                            <constraint id="6472" firstItem="6469" firstAttribute="leading" secondItem="2460" secondAttribute="leadingMargin"/>
+                            <constraint id="6475" firstItem="2460" firstAttribute="centerY" secondItem="6469" secondAttribute="centerY" constant="19"/>
+                            <constraint id="6476" firstItem="6469" firstAttribute="centerX" secondItem="2460" secondAttribute="centerX"/>
+                            <constraint id="6479" firstItem="6470" firstAttribute="centerY" secondItem="2460" secondAttribute="centerY" constant="14"/>
+                            <constraint id="6480" firstItem="6470" firstAttribute="centerX" secondItem="2460" secondAttribute="centerX"/>
+                            <constraint id="6481" firstItem="6470" firstAttribute="trailing" secondItem="2460" secondAttribute="trailingMargin"/>
+                            <constraint id="6482" firstItem="6470" firstAttribute="leading" secondItem="2460" secondAttribute="leadingMargin"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="EmailLabel" destination="6469" id="name-outlet-6469"/>
+                        <outlet property="LogoutButton" destination="6470" id="name-outlet-6470"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2461" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="862" y="788"/>
+            <point key="canvasLocation" x="1369" y="950"/>
         </scene>
     </scenes>
     <resources>

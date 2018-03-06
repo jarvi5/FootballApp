@@ -68,20 +68,10 @@ namespace FootballApp.iOS
             {
                 //User needs to log in, so show the Login View Controlller
                 var loginViewController = GetViewController(MainStoryboard, "LoginPageViewController") as LoginPageViewController;
-                loginViewController.OnLoginSuccess += LoginViewController_OnLoginSuccess;
                 SetRootViewController(loginViewController, false);
             }
 
             return true;
-        }
-
-        void LoginViewController_OnLoginSuccess(object sender, EventArgs e)
-        {
-            //We have successfully Logged In
-            var mainController = GetViewController(MainStoryboard, "MainNavigationController");
-            SetRootViewController(mainController, true);
-
-            NSUserDefaults.StandardUserDefaults.SetBool(true, "isAuthenticated");
         }
 
         public override void OnResignActivation(UIApplication application)

@@ -32,12 +32,15 @@ namespace FootballApp.iOS
         {
             base.PrepareForSegue(segue, sender);
 
-            int selectedRow = TableView.IndexPathForSelectedRow.Row;
-            var leagueDetail = segue.DestinationViewController as LeagueDetailViewController;
-            if(leagueDetail != null)
+            if(!String.Equals(segue.Identifier, "SettingsSegue"))
             {
-                leagueDetail.NavigationItem.Title = Leagues[selectedRow].Name;
-                leagueDetail.Id = Leagues[selectedRow].Id;
+                int selectedRow = TableView.IndexPathForSelectedRow.Row;
+                var leagueDetail = segue.DestinationViewController as LeagueDetailViewController;
+                if (leagueDetail != null)
+                {
+                    leagueDetail.NavigationItem.Title = Leagues[selectedRow].Name;
+                    leagueDetail.Id = Leagues[selectedRow].Id;
+                }
             }
         }
     }
