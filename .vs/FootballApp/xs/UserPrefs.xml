@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{E0EBF267-60D6-47FF-9CEC-1B282D455C92}|Default">
+  <MonoDevelop.Ide.ItemProperties.FootballApp.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.02BAFFB3-6DFD-4EB4-A0E6-5D181E2912E8" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/MainActivity.cs">
+    <Files>
+      <File FileName="Droid/Settings/SettingsActivity.cs" Line="26" Column="34" />
+      <File FileName="Droid/Login/LoginActivity.cs" Line="64" Column="17" />
+      <File FileName="Droid/MainActivity.cs" Line="24" Column="17" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.FootballApp.Tests PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/javic/FootballApp/Droid/TeamDetailAdapter.cs" relfile="Droid/TeamDetailAdapter.cs" line="24" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.FootballApp.Droid AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.Android_Accelerated_Nougat" AndroidDesignerPreferredTheme="FootballAppTheme" />
+  <MultiItemStartupConfigurations />
+</Properties>

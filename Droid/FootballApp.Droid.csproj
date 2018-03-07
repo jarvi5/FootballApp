@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FootballApp.Droid</RootNamespace>
     <AssemblyName>FootballApp.Droid</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -125,6 +125,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Login\LoginActivity.cs" />
     <Compile Include="TeamDetail\TeamAdapter.cs" />
+    <Compile Include="Settings\SettingsActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -143,6 +144,36 @@
     <AndroidResource Include="Resources\layout\TeamDetail.axml" />
     <AndroidResource Include="Resources\layout\Login.axml" />
     <AndroidResource Include="Resources\drawable\football.jpeg" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\layout\toolbar.axml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_action_content_create.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_action_content_save.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_menu_copy_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_menu_cut_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_menu_paste_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_menu_search_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_action_content_create.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_action_content_save.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_menu_copy_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_menu_cut_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_menu_paste_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_menu_search_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_action_content_create.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_action_content_save.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_menu_copy_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_menu_cut_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_menu_paste_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_menu_search_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_action_content_create.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_action_content_save.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_menu_copy_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_menu_cut_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_menu_paste_holo_dark.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_menu_search_holo_dark.png" />
+    <AndroidResource Include="Resources\menu\topMenu.xml" />
+    <AndroidResource Include="Resources\layout\Leagues.axml" />
+    <AndroidResource Include="Resources\layout\LeagueDetail.axml" />
+    <AndroidResource Include="Resources\layout\Settings.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\layout\" />
@@ -153,6 +184,8 @@
     <Folder Include="Login\" />
     <Folder Include="Leagues\" />
     <Folder Include="Resources\drawable\" />
+    <Folder Include="Resources\menu\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>
     <GoogleServicesJson Include="Resources\google-services.json" />

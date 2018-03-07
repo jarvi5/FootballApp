@@ -32,7 +32,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="211" title="Leagues">
-                        <barButtonItem key="rightBarButtonItem" id="5780" systemItem="compose">
+                        <barButtonItem key="rightBarButtonItem" id="5780" title="Settings">
                             <connections>
                                 <segue id="5906" destination="2459" kind="show" identifier="SettingsSegue"/>
                             </connections>
@@ -100,7 +100,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="5781" title="League Detail">
-                        <barButtonItem key="rightBarButtonItem" id="5782" systemItem="compose">
+                        <barButtonItem key="rightBarButtonItem" id="5782" title="Settings">
                             <connections>
                                 <segue id="5956" destination="2459" kind="show" identifier="SettingsSegue"/>
                             </connections>
@@ -121,7 +121,7 @@
                     </tabBar>
                     <connections/>
                     <navigationItem key="navigationItem" id="5783" title="Team Detail">
-                        <barButtonItem key="rightBarButtonItem" id="5784" systemItem="compose">
+                        <barButtonItem key="rightBarButtonItem" id="5784" title="Settings">
                             <connections>
                                 <segue id="5996" destination="2459" kind="show" identifier="SettingsSegue"/>
                             </connections>
