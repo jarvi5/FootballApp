@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Android.App;
-using Android.Graphics;
 using Android.Views;
 using Android.Widget;
+using FFImageLoading;
+using FFImageLoading.Svg.Platform;
+using FFImageLoading.Views;
 using FootballApp.Data;
-using Java.IO;
-using Java.Net;
-using Square.Picasso;
 
 namespace FootballApp.Droid
 {
@@ -40,15 +38,23 @@ namespace FootballApp.Droid
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             Team item = Teams[position];
-            View view = convertView; // re-use an existing view, if one is available
-            if (view == null) // otherwise create a new one
+            View view = convertView;
+            if (view == null)
                 view = Context.LayoutInflater.Inflate(Resource.Layout.TeamCellView, null);
             view.FindViewById<TextView>(Resource.Id.Text1).Text = item.TeamName;
             view.FindViewById<TextView>(Resource.Id.Text2).Text = "position: " + item.Position + "\tpoints: " + item.Points;
+            ImageViewAsync image = view.FindViewById<ImageViewAsync>(Resource.Id.Image);
             if (!string.IsNullOrEmpty(item.CrestURI))
             {
-                ImageView image = view.FindViewById<ImageView>(Resource.Id.Image);
-                Picasso.With(Context).Load(item.CrestURI).Into(image);
+                ImageService.Instance.LoadUrl(item.CrestURI)
+                            .WithCustomDataResolver(new SvgDataResolver(200, 0, true))
+                            .WithCustomLoadingPlaceholderDataResolver(new SvgDataResolver(200, 0, true))
+                            .Error(exception =>
+                            {
+                                ImageService.Instance.LoadUrl(item.CrestURI)
+                                            .Into(image);
+                            })
+                            .Into(image);
             }
             return view;
         }

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <ImageView
+    <FFImageLoading.Views.ImageViewAsync
         android:id="@+id/Image"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:textAlignment="viewStart" />
+        android:src="@drawable/football" />
     <LinearLayout
         android:id="@+id/Text"
         android:orientation="vertical"

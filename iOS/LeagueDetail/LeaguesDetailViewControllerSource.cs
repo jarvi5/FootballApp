@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using FFImageLoading;
+using FFImageLoading.Svg.Platform;
 using Foundation;
 using SDWebImage;
 using UIKit;
@@ -59,13 +61,20 @@ namespace FootballApp.iOS
 
             cell.TextLabel.Text = Text(item);
             cell.DetailTextLabel.Text = Detail(item);
-            if ((cell != null) && !string.IsNullOrEmpty(Image(item)))
+            string imageUrl = Image(item);
+            UIImageView image = cell.ImageView;
+            if (!string.IsNullOrEmpty(imageUrl))
             {
-                Uri uri = new Uri(Image(item));
-                IdnMapping idn = new IdnMapping();
-                cell.ImageView.SetImage(new NSUrl(uri.Scheme, idn.GetAscii(uri.DnsSafeHost), uri.PathAndQuery));
+                ImageService.Instance.LoadUrl(imageUrl)
+                            .WithCustomDataResolver(new SvgDataResolver(200, 0, true))
+                            .WithCustomLoadingPlaceholderDataResolver(new SvgDataResolver(200, 0, true))
+                            .Error(exception =>
+                            {
+                                ImageService.Instance.LoadUrl(imageUrl)
+                                        .Into(image);
+                            })
+                            .Into(image);
             }
-            cell.ImageView.Frame = new CoreGraphics.CGRect(0, 0, 44, 44);
             return cell;
         }
     }
