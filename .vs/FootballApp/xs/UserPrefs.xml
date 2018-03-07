@@ -1,6 +1,15 @@
-﻿<Properties StartupConfiguration="{E0EBF267-60D6-47FF-9CEC-1B282D455C92}|Default">
+﻿<Properties StartupConfiguration="{00F0314A-AA5B-45A4-872D-413A60B074C0}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.FootballApp.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.02BAFFB3-6DFD-4EB4-A0E6-5D181E2912E8" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/Leagues/LeaguesViewController.cs">
+    <Files>
+      <File FileName="FootballApp/Helpers/Validations.cs" Line="1" Column="1" />
+      <File FileName="FootballApp.Tests/DataManagerTests.cs" Line="10" Column="9" />
+      <File FileName="FootballApp.Tests/HelpersTest.cs" Line="17" Column="70" />
+      <File FileName="FootballApp/Data/IDataManager.cs" Line="11" Column="42" />
+      <File FileName="FootballApp/Data/ApiDataManager.cs" Line="1" Column="1" />
+      <File FileName="iOS/Leagues/LeaguesViewController.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.FootballApp.Tests PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
