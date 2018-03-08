@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FootballApp.Data;
 using UIKit;
 namespace FootballApp.iOS
 {
     public class PlayersViewController : UITableViewController
     {
-        public string TeamUrl { get; set; }
-        ApiDataManager DataManager = new ApiDataManager();
+        public Team Team { get; set; }
+        IDataManager DataManager = new ApiDataManager();
         IList<Player> Players;
 
         public PlayersViewController()
@@ -17,13 +16,27 @@ namespace FootballApp.iOS
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await DataManager.LoadData(TeamUrl + "/players");
-            Players = (IList<Player>)DataManager.GetPlayers();
-            TableView.Source = new PlayersViewControllerSource<Player>(TableView)
+            Response<IEnumerable<Player>> response = await DataManager.GetPlayers(Team);
+            if (response.Success)
             {
-                DataSource = Players,
-                Text = player => "" + player.JerseyNumber + "\t" + player.Name
-            };
+                Players = (IList<Player>)response.Data;
+                if (Players.Count > 0)
+                {
+                    TableView.Source = new PlayersViewControllerSource<Player>(TableView)
+                    {
+                        DataSource = Players,
+                        Text = player => "" + player.JerseyNumber + "\t" + player.Name
+                    };
+                }
+                else
+                {
+                    View = NotFoundView.Create("Players not found");
+                }
+            }
+            else 
+            {
+                View = NotFoundView.Create(response.Message);
+            }
         }
     }
 }

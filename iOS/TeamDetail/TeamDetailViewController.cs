@@ -1,4 +1,4 @@
-using Foundation;
+using FootballApp.Data;
 using System;
 using UIKit;
 
@@ -6,7 +6,7 @@ namespace FootballApp.iOS
 {
     public partial class TeamDetailViewController : UITabBarController
     {
-        public string TeamUrl { get; set; }
+        public Team Team { get; set; }
         PlayersViewController PlayersViewController;
         FixturesViewController FixturesViewController;
 
@@ -19,11 +19,11 @@ namespace FootballApp.iOS
             base.ViewDidLoad();
             PlayersViewController = new PlayersViewController();
             PlayersViewController.Title = "Players";
-            PlayersViewController.TeamUrl = TeamUrl;
+            PlayersViewController.Team = Team;
 
             FixturesViewController = new FixturesViewController();
             FixturesViewController.Title = "Fixtures";
-            FixturesViewController.TeamUrl = TeamUrl;
+            FixturesViewController.Team = Team;
 
             ViewControllers = new UIViewController[] {
                 PlayersViewController,

@@ -7,8 +7,8 @@ namespace FootballApp.iOS
 {
     public class FixturesViewController : UITableViewController
     {
-        public string TeamUrl { get; set; }
-        ApiDataManager DataManager = new ApiDataManager();
+        public Team Team { get; set; }
+        IDataManager DataManager = new ApiDataManager();
         IList<Fixture> Fixtures;
 
         public FixturesViewController()
@@ -18,14 +18,28 @@ namespace FootballApp.iOS
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await DataManager.LoadData(TeamUrl + "/fixtures");
-            Fixtures = (IList<Fixture>)DataManager.GetFixtures();
-            TableView.Source = new FixturesViewControllerSource<Fixtures>(TableView)
+            Response<IEnumerable<Fixture>> response = await DataManager.GetFixtures(Team);
+            if(response.Success)
             {
-                DataSource = Fixtures,
-                Text = fixture => fixture.HomeTeamName + " vs " + fixture.AwayTeamName,
-                Detail = fixture => "Date: " + fixture.Date + "\tScore: " + fixture.Result.GoalsHomeTeam + " - " + fixture.Result.GoalsAwayTeam
-            };
+                Fixtures = (IList<Fixture>)response.Data;
+                if (Fixtures.Count > 0)
+                {
+                    TableView.Source = new FixturesViewControllerSource<Fixtures>(TableView)
+                    {
+                        DataSource = Fixtures,
+                        Text = fixture => fixture.HomeTeamName + " vs " + fixture.AwayTeamName,
+                        Detail = fixture => "Date: " + fixture.Date + "\tScore: " + fixture.Result.GoalsHomeTeam + " - " + fixture.Result.GoalsAwayTeam
+                    };
+                }
+                else
+                {
+                    View = NotFoundView.Create("Fixtures not found");
+                }
+            }
+            else
+            {
+                View = NotFoundView.Create(response.Message);
+            }
         }
     }
 }

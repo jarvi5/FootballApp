@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Android.App;
 using Android.OS;
 using Android.Views;
+using Android.Widget;
 using FootballApp.Data;
 
 namespace FootballApp.Droid
@@ -10,11 +10,11 @@ namespace FootballApp.Droid
     {
         ApiDataManager DataManager = new ApiDataManager();
         IList<Fixture> Fixtures;
-        string TeamUrl;
+        Team Team;
 
-        public FixturesFragment(string url)
+        public FixturesFragment(Team team)
         {
-            TeamUrl = url;
+            Team = team;
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -25,18 +25,30 @@ namespace FootballApp.Droid
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            return base.OnCreateView(inflater, container, savedInstanceState);
+            View view = inflater.Inflate(Resource.Layout.NotFound, container, false);
+            return view;
         }
 
         public override async void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            await DataManager.LoadData(TeamUrl + "/fixtures");
-            Fixtures = (IList<Fixture>)DataManager.GetFixtures();
-            ListAdapter = new FixturesListAdapter(Activity, Fixtures);
+            Response<IEnumerable<Fixture>> response = await DataManager.GetFixtures(Team);
+            if (response.Success)
+            {
+                Fixtures = (IList<Fixture>)response.Data;
+                if (Fixtures.Count > 0)
+                {
+                    ListAdapter = new FixturesListAdapter(Activity, Fixtures);
+                }
+                else
+                {
+                    View.FindViewById<TextView>(Resource.Id.errorMessage).Text = "Fixtures not found";
+                }
+            }
+            else
+            {
+                View.FindViewById<TextView>(Resource.Id.errorMessage).Text = response.Message;
+            }
         }
     }
 }

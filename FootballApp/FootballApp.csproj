@@ -41,6 +41,8 @@
     <Compile Include="Data\Models\TeamLinks.cs" />
     <Compile Include="Data\IDataManager.cs" />
     <Compile Include="Helpers\Validations.cs" />
+    <Compile Include="Data\Response.cs" />
+    <Compile Include="Helpers\Serialization.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

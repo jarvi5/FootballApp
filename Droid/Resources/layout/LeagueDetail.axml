@@ -7,7 +7,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <ListView
-        android:id="@+id/@android:id/list"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

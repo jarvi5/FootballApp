@@ -5,24 +5,28 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using FootballApp.Data;
+using FootballApp.Helpers;
 
 namespace FootballApp.Droid
 {
     [Activity(Label = "Leagues")]
     public class LeaguesActivity : ListActivity
     {
-        IDataManager<string> DataManager = new ApiDataManager();
+        IDataManager DataManager = new ApiDataManager();
         IList<League> Leagues;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.Leagues);
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetActionBar(toolbar);
-            await DataManager.LoadData("http://www.football-data.org/v1/competitions/?season=2017");
-            Leagues = (IList<League>)DataManager.GetAllLeagues();
-            ListAdapter = new LeaguesListAdapter(this,Leagues);
+            Response<IEnumerable<League>> response = await DataManager.GetAllLeagues();
+            if (response.Success)
+            {
+                SetContentView(Resource.Layout.Leagues);
+                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                SetActionBar(toolbar);
+                Leagues = (IList<League>)response.Data;
+                ListAdapter = new LeaguesListAdapter(this, Leagues);
+            }
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -45,8 +49,8 @@ namespace FootballApp.Droid
         {
             base.OnListItemClick(l, v, position, id);
             var intent = new Intent(this, typeof(LeagueDetailActivity));
-            intent.PutExtra("league", Leagues[position].Name);
-            intent.PutExtra("id", Leagues[position].Id);
+            string league = Serialization<League>.Serialize(Leagues[position]);
+            intent.PutExtra("league", league);
             StartActivity(intent);
         }
     }

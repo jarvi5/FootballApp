@@ -3,14 +3,11 @@ using System.Threading.Tasks;
 
 namespace FootballApp.Data
 {
-    public interface IDataManager<T>
+    public interface IDataManager
     {
-        string Data { get; set; }
-
-        Task LoadData(T source);
-        IEnumerable<League> GetAllLeagues();
-        IEnumerable<Team> GetLeagueTable();
-        IEnumerable<Player> GetPlayers();
-        IEnumerable<Fixture> GetFixtures();
+        Task<Response<IEnumerable<League>>> GetAllLeagues();
+        Task<Response<IEnumerable<Team>>> GetLeagueTable(League league);
+        Task<Response<IEnumerable<Player>>> GetPlayers(Team team);
+        Task<Response<IEnumerable<Fixture>>> GetFixtures(Team team);
     }
 }

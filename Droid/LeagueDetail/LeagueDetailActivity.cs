@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using FootballApp.Data;
+using FootballApp.Helpers;
 
 namespace FootballApp.Droid
 {
@@ -13,18 +14,42 @@ namespace FootballApp.Droid
     {
 
         IList<Team> Teams;
-        IDataManager<string> DataManager = new ApiDataManager();
+        League League;
+        IDataManager DataManager = new ApiDataManager();
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.Leagues);
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetActionBar(toolbar);
-            Title = Intent.GetStringExtra("league");
-            await DataManager.LoadData("http://www.football-data.org/v1/competitions/"+ Intent.GetIntExtra("id",-1) + "/leagueTable");
-            Teams = (IList<Team>)DataManager.GetLeagueTable();
-            ListAdapter = new TeamsListAdapter(this, Teams);
+            League = Serialization<League>.Deserialize(Intent.GetStringExtra("league"));
+            Response<IEnumerable<Team>> response = await DataManager.GetLeagueTable(League);
+            if (response.Success)
+            {
+                Teams = (IList<Team>)response.Data;
+                if (Teams != null)
+                {
+                    SetContentView(Resource.Layout.Leagues);
+                    var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                    SetActionBar(toolbar);
+                    Title = League.Name;
+                    ListAdapter = new TeamsListAdapter(this, Teams);
+                }
+                else
+                {
+                    SetContentView(Resource.Layout.NotFound);
+                    var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                    FindViewById<TextView>(Resource.Id.errorMessage).Text = "No teams found";
+                    SetActionBar(toolbar);
+                    Title = League.Name;
+                }
+            }
+            else
+            {
+                SetContentView(Resource.Layout.NotFound);
+                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                FindViewById<TextView>(Resource.Id.errorMessage).Text = response.Message;
+                SetActionBar(toolbar);
+                Title = League.Name;
+            }
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -47,8 +72,8 @@ namespace FootballApp.Droid
         {
             base.OnListItemClick(l, v, position, id);
             var intent = new Intent(this, typeof(TeamDetailActivity));
-            intent.PutExtra("teamUrl",Teams[position].Links.Team.Href);
-            intent.PutExtra("teamName",Teams[position].TeamName);
+            string team = Serialization<Team>.Serialize(Teams[position]);
+            intent.PutExtra("team", team);
             StartActivity(intent);
         }
     }

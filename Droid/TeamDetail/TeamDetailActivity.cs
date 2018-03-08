@@ -5,6 +5,8 @@ using Android.App;
 using Android.Widget;
 using Android.Views;
 using Android.Content;
+using FootballApp.Data;
+using FootballApp.Helpers;
 
 namespace FootballApp.Droid
 {
@@ -12,19 +14,21 @@ namespace FootballApp.Droid
     public class TeamDetailActivity : FragmentActivity
     {
         Android.Support.V4.App.Fragment[] Fragments;
+        Team Team;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Team = Serialization<Team>.Deserialize(Intent.GetStringExtra("team"));
             SetContentView(Resource.Layout.TeamDetail);
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
-            Title = Intent.GetStringExtra("teamName");
+            Title = Team.TeamName;
             ViewPager viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
             Fragments = new Android.Support.V4.App.Fragment[]
             {
-                new PlayersFragment(Intent.GetStringExtra("teamUrl")),
-                new FixturesFragment(Intent.GetStringExtra("teamUrl"))
+                new PlayersFragment(Team),
+                new FixturesFragment(Team)
             };
 
             TeamAdapter teamAdapter = new TeamAdapter(SupportFragmentManager, Fragments);

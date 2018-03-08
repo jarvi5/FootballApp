@@ -8,7 +8,7 @@ namespace FootballApp.iOS
 {
     public partial class LeagueDetailViewController : UITableViewController
     {
-        public int Id { get; set; }
+        public League League { get; set; }
         ApiDataManager DataManager = new ApiDataManager();
         IList<Team> Teams;
 
@@ -19,15 +19,30 @@ namespace FootballApp.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            await DataManager.LoadData("http://www.football-data.org/v1/competitions/" + Id + "/leagueTable");
-            Teams = (IList<Team>)DataManager.GetLeagueTable();
-            TableView.Source = new LeaguesDetailViewControllerSource<Team>(TableView)
+            Title = League.Name;
+            Response<IEnumerable<Team>> response = await DataManager.GetLeagueTable(League);
+            if (response.Success)
             {
-                DataSource = Teams,
-                Text = team => team.TeamName,
-                Detail = team => "position: " + team.Position + "\tpoints: " + team.Points,
-                Image = team => team.CrestURI
-            };
+                Teams = (IList<Team>)response.Data;
+                if(Teams != null)
+                {
+                    TableView.Source = new LeaguesDetailViewControllerSource<Team>(TableView)
+                    {
+                        DataSource = Teams,
+                        Text = team => team.TeamName,
+                        Detail = team => "position: " + team.Position + "\tpoints: " + team.Points,
+                        Image = team => team.CrestURI
+                    };
+                }
+                else
+                {
+                    View = NotFoundView.Create("Teams not found");
+                }
+            }
+            else
+            {
+                View = NotFoundView.Create(response.Message);
+            }
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
@@ -42,8 +57,7 @@ namespace FootballApp.iOS
 
                 if (teamDetail != null)
                 {
-                    teamDetail.NavigationItem.Title = team.TeamName;
-                    teamDetail.TeamUrl = team.Links.Team.Href;
+                    teamDetail.Team = team;
                 }
             }
         }
