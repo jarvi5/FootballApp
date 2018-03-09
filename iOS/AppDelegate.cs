@@ -1,7 +1,7 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
 using UIKit;
 using Firebase.Core;
+using Firebase.Auth;
 
 namespace FootballApp.iOS
 {
@@ -11,11 +11,11 @@ namespace FootballApp.iOS
     public class AppDelegate : UIApplicationDelegate
     {
         // class-level declarations
-        bool isAuthenticated 
+        bool IsAuthenticated 
         {
             get 
             {
-                return NSUserDefaults.StandardUserDefaults.BoolForKey("isAuthenticated");
+                return Auth.DefaultInstance.CurrentUser != null;
             }
         }
 
@@ -58,7 +58,7 @@ namespace FootballApp.iOS
         {
             App.Configure();
 
-            if (isAuthenticated)
+            if (IsAuthenticated)
             {
                 //We are already authenticated, so go to the main tab bar controller;
                 var mainController = GetViewController(MainStoryboard, "MainNavigationController");

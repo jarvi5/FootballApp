@@ -20,62 +20,58 @@ namespace FootballApp.iOS
             Auth = Auth.DefaultInstance;
         }
 
-        partial void LoginButton_TouchUpInside(UIButton sender)
+		public override void ViewWillAppear(bool animated)
+		{
+            base.ViewWillAppear(animated);
+            var handle = Auth.DefaultInstance.AddAuthStateDidChangeListener(HandleAuthStateDidChangeListener);
+		}
+
+		async partial void LoginButton_TouchUpInside(UIButton sender)
         {
-            if (Validations.IsValidEmail(EmailTextView.Text))
+            if (!Validations.IsValidEmail(EmailTextView.Text))
             {
-                this.EmailTextView.BackgroundColor = UIColor.Clear;
-                this.EmailTextView.Layer.BorderColor = UIColor.Clear.CGColor;
-                this.EmailTextView.Layer.BorderWidth = 3;
-                this.EmailTextView.Layer.CornerRadius = 5;
+                InvokeOnMainThread(() => {
+                    this.EmailTextView.BackgroundColor = UIColor.Yellow;
+                    this.EmailTextView.Layer.BorderColor = UIColor.Red.CGColor;
+                    this.EmailTextView.Layer.BorderWidth = 3;
+                    this.EmailTextView.Layer.CornerRadius = 5;
+                });
+                return;
             }
             else
             {
                 InvokeOnMainThread(() =>
                 {
-                    this.EmailTextView.BackgroundColor = UIColor.Yellow;
-                    this.EmailTextView.Layer.BorderColor = UIColor.Red.CGColor;
+                    this.EmailTextView.BackgroundColor = UIColor.Clear;
+                    this.EmailTextView.Layer.BorderColor = UIColor.Clear.CGColor;
                     this.EmailTextView.Layer.BorderWidth = 3;
                     this.EmailTextView.Layer.CornerRadius = 5;
-                });   
+                });
             }
-
-            if(String.Equals("javicamdo@gmail.com", EmailTextView.Text) && String.Equals("passwd123", PasswordTextView.Text))
+            try
             {
-                NSUserDefaults.StandardUserDefaults.SetBool(true, "isAuthenticated");
-                NSUserDefaults.StandardUserDefaults.SetString(EmailTextView.Text, "email");
-                var storyboard = UIStoryboard.FromName("Main", NSBundle.MainBundle);
-                var mainController = storyboard.InstantiateViewController("MainNavigationController");
-                PresentViewController(mainController, true, null);
+                User user = await Auth.DefaultInstance.SignInAsync(EmailTextView.Text, PasswordTextView.Text);
             }
-
-            else
+            catch(NSErrorException ex)
             {
                 UIAlertView alert = new UIAlertView()
                 {
                     Title = "Error",
-                    Message = "Bad email or password"
+                    Message = ex.Error.LocalizedDescription
                 };
                 alert.AddButton("Ok");
                 alert.Show();
             }
+        }
 
-            /*Auth.SignIn(EmailTextView.Text, PasswordTextView.Text, (user, error) => {
-                if (user != null)
-                {
-                    OnLoginSuccess(sender, new EventArgs());
-                }
-                else
-                {
-                    UIAlertView alert = new UIAlertView()
-                    {
-                        Title = "Error",
-                        Message = error.LocalizedDescription
-                    };
-                    alert.AddButton("Ok");
-                    alert.Show();
-                }
-            });*/
+        void HandleAuthStateDidChangeListener(Auth auth, User user)
+        {
+            if(user != null)
+            {
+                var storyboard = UIStoryboard.FromName("Main", NSBundle.MainBundle);
+                var mainController = storyboard.InstantiateViewController("MainNavigationController");
+                PresentViewController(mainController, true, null);
+            }
         }
     }
 }

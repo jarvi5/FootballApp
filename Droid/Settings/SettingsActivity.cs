@@ -15,8 +15,7 @@ namespace FootballApp.Droid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Settings);
             Button logoutButton = FindViewById<Button>(Resource.Id.logoutButton);
-            var user = FirebaseAuth.Instance.CurrentUser;
-            FindViewById<TextView>(Resource.Id.emailTextView).Text = user.Email;
+            FindViewById<TextView>(Resource.Id.emailTextView).Text = FirebaseAuth.Instance.CurrentUser.Email;
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
             logoutButton.Click += OnLogoutButtonClick;
