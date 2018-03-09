@@ -1,16 +1,7 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Preferences;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using Firebase.Auth;
 
 namespace FootballApp.Droid
 {
@@ -21,8 +12,7 @@ namespace FootballApp.Droid
         {
             get
             {
-                ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
-                return preferences.GetBoolean("isAuthenticated", false);
+                return FirebaseAuth.Instance.CurrentUser != null;
             }
         }
 

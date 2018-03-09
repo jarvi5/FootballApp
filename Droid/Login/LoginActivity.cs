@@ -2,8 +2,6 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Preferences;
-using Android.Views;
 using Android.Widget;
 using Firebase.Auth;
 using FootballApp.Helpers;
@@ -42,21 +40,37 @@ namespace FootballApp.Droid
             {
                 await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
             }
-            catch (Exception ex)
+            catch
             {
                 Toast.MakeText(this, "Sign In failed", ToastLength.Short).Show();
             }
-            var user = FirebaseAuth.Instance.CurrentUser;
-            if (user != null) {
+        }
+
+        public void AuthStateChanged(object sender, FirebaseAuth.AuthStateEventArgs e)
+        {
+            var user = e.Auth.CurrentUser;
+
+            if (user != null)
+            {
                 var intent = new Intent(this, typeof(LeaguesActivity));
-                ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
-                ISharedPreferencesEditor editor = preferences.Edit();
-                editor.PutBoolean("isAuthenticated", true);
-                editor.PutString("email", user.Email);
-                editor.Commit();
                 StartActivity(intent);
                 Finish();
             }
+        }
+
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            FirebaseAuth.Instance.AuthState += AuthStateChanged;
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+
+            FirebaseAuth.Instance.AuthState -= AuthStateChanged;
         }
     }
 }
