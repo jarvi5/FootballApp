@@ -39,8 +39,16 @@ namespace FootballApp.Data
             Response<IEnumerable<Team>> response = new Response<IEnumerable<Team>>();
             try
             {
-                LeagueDetails leagueDetails = await GetData<LeagueDetails>(BaseUrl + "competitions/" + league.Id + "/leagueTable");
-                response.Data = leagueDetails.Standing;
+                if(String.Equals(league.Name,"CL"))
+                {
+                    ChampionsLeagueDetails leagueDetails = await GetData<ChampionsLeagueDetails>(BaseUrl + "competitions/" + league.Id + "/leagueTable", true);
+                    response.Data = leagueDetails.Standings.GetTeams();
+                }
+                else
+                {
+                    LeagueDetails leagueDetails = await GetData<LeagueDetails>(BaseUrl + "competitions/" + league.Id + "/leagueTable");
+                    response.Data = leagueDetails.Standing;
+                }
                 response.Success = true;
             }
             catch
@@ -85,10 +93,10 @@ namespace FootballApp.Data
             return response;
         }
 
-        async Task<T> GetData<T>(string url)
+        async Task<T> GetData<T>(string url, bool isChampionsLeague = false)
         {
             string result = await HttpClient.GetStringAsync(url);
-            return Serialization<T>.Deserialize(result);
+            return Serialization<T>.Deserialize(result, isChampionsLeague);
         }
     }
 }

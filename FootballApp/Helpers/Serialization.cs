@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FootballApp.Data;
+using Newtonsoft.Json;
 namespace FootballApp.Helpers
 {
     public static class Serialization<T>
@@ -8,8 +9,10 @@ namespace FootballApp.Helpers
             return JsonConvert.SerializeObject(value);
         }
 
-        public static T Deserialize(string value)
+        public static T Deserialize(string value, bool isChampionsLeague = false)
         {
+            if (isChampionsLeague)
+                return JsonConvert.DeserializeObject<T>(value, new TeamConverter());
             return JsonConvert.DeserializeObject<T>(value);
         }
     }

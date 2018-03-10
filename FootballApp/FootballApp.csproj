@@ -29,20 +29,16 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\ApiDataManager.cs" />
-    <Compile Include="Data\Models\Fixture.cs" />
     <Compile Include="Data\Models\Fixtures.cs" />
     <Compile Include="Data\Models\League.cs" />
     <Compile Include="Data\Models\LeagueDetails.cs" />
-    <Compile Include="Data\Models\Link.cs" />
-    <Compile Include="Data\Models\Player.cs" />
     <Compile Include="Data\Models\Players.cs" />
-    <Compile Include="Data\Models\Result.cs" />
     <Compile Include="Data\Models\Team.cs" />
-    <Compile Include="Data\Models\TeamLinks.cs" />
     <Compile Include="Data\IDataManager.cs" />
     <Compile Include="Helpers\Validations.cs" />
     <Compile Include="Data\Response.cs" />
     <Compile Include="Helpers\Serialization.cs" />
+    <Compile Include="Data\Models\ChampionsLeagueDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

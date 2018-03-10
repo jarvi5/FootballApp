@@ -42,7 +42,10 @@ namespace FootballApp.Droid
             if (view == null)
                 view = Context.LayoutInflater.Inflate(Resource.Layout.TeamCellView, null);
             view.FindViewById<TextView>(Resource.Id.Text1).Text = item.TeamName;
-            view.FindViewById<TextView>(Resource.Id.Text2).Text = "position: " + item.Position + "\tpoints: " + item.Points;
+            string teamPosition = item.Position != 0 && item.Position != null ? "position: " + item.Position : "";
+            string points = item.Points != 0 && item.Points != null ? "\tpoints: " + item.Points : "";
+            string group = item.Group != null ? "\tgroup: " + item.Group : "";
+            view.FindViewById<TextView>(Resource.Id.Text2).Text = teamPosition + points + group;
             ImageViewAsync image = view.FindViewById<ImageViewAsync>(Resource.Id.Image);
             if (!string.IsNullOrEmpty(item.CrestURI))
             {

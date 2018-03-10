@@ -30,7 +30,12 @@ namespace FootballApp.iOS
                     {
                         DataSource = Teams,
                         Text = team => team.TeamName,
-                        Detail = team => "position: " + team.Position + "\tpoints: " + team.Points,
+                        Detail = team => {
+                            string position = team.Position != 0 && team.Position != null ? "position: " + team.Position : "";
+                            string points = team.Points != 0 && team.Points != null ? "\tpoints: " + team.Points : "";
+                            string group = team.Group != null ? "\tgroup: " + team.Group : "";
+                            return position + points + group;
+                        },
                         Image = team => team.CrestURI
                     };
                 }
