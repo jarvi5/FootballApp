@@ -16,7 +16,7 @@ namespace FootballApp.iOS
         {
         }
 
-        public async override void ViewDidLoad()
+		public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
             Title = League.Name;
@@ -41,12 +41,16 @@ namespace FootballApp.iOS
                 }
                 else
                 {
-                    View = NotFoundView.Create("Teams not found");
+                    TableView.DataSource = null;
+                    TableView.BackgroundView = NotFoundView.Create("Teams not found");
+                    TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
                 }
             }
             else
             {
-                View = NotFoundView.Create(response.Message);
+                TableView.DataSource = null;
+                TableView.BackgroundView = NotFoundView.Create(response.Message);
+                TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
             }
         }
 

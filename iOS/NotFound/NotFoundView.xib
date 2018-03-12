@@ -13,23 +13,22 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="164" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="8" y="358" width="398" height="21"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
-                    <constraints>
-                        <constraint id="169" firstItem="164" firstAttribute="height" constant="21"/>
-                    </constraints>
                 </label>
             </subviews>
             <connections>
                 <outlet property="Message" destination="164" id="name-outlet-164"/>
             </connections>
             <constraints>
-                <constraint id="165" firstItem="1" firstAttribute="trailing" secondItem="164" secondAttribute="trailing" constant="8"/>
-                <constraint id="166" firstItem="164" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8"/>
+                <constraint id="165" firstItem="1" firstAttribute="trailing" secondItem="164" secondAttribute="trailing"/>
+                <constraint id="166" firstItem="164" firstAttribute="leading" secondItem="1" secondAttribute="leading"/>
                 <constraint id="167" firstItem="164" firstAttribute="centerX" secondItem="1" secondAttribute="centerX"/>
                 <constraint id="168" firstItem="164" firstAttribute="centerY" secondItem="1" secondAttribute="centerY"/>
+                <constraint id="695" firstItem="164" firstAttribute="bottom" secondItem="1" secondAttribute="bottom"/>
+                <constraint id="735" firstItem="164" firstAttribute="top" secondItem="1" secondAttribute="top"/>
             </constraints>
         </view>
     </objects>

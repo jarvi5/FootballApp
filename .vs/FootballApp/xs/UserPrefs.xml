@@ -1,8 +1,11 @@
-﻿<Properties StartupConfiguration="{E0EBF267-60D6-47FF-9CEC-1B282D455C92}|Default">
-  <MonoDevelop.Ide.ItemProperties.FootballApp.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.02BAFFB3-6DFD-4EB4-A0E6-5D181E2912E8" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Droid/LeagueDetail/LeagueDetailActivity.cs">
+﻿<Properties StartupConfiguration="{CEECBF7B-1BD0-4578-816E-DD87CE211A63}|Default">
+  <MonoDevelop.Ide.ItemProperties.FootballApp.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.02BAFFB3-6DFD-4EB4-A0E6-5D181E2912E8" automaticSigning="False" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/TeamDetail/Fixtures/FixturesViewController.cs">
     <Files>
-      <File FileName="Droid/LeagueDetail/LeagueDetailActivity.cs" Line="31" Column="17" />
+      <File FileName="iOS/Main.storyboard" />
+      <File FileName="iOS/LeagueDetail/LeagueDetailViewController.cs" Line="44" Column="21" />
+      <File FileName="iOS/TeamDetail/Players/PlayersViewController.cs" Line="45" Column="72" />
+      <File FileName="iOS/TeamDetail/Fixtures/FixturesViewController.cs" Line="36" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.FootballApp.Tests PreferredExecutionTarget="MonoDevelop.Default" />
