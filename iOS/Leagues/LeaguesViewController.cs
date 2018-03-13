@@ -29,6 +29,12 @@ namespace FootballApp.iOS
                     Text = league => league.Caption
                 };
             }
+            else
+            {
+                TableView.DataSource = null;
+                TableView.BackgroundView = NotFoundView.Create(response.Message);
+                TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+            }
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)

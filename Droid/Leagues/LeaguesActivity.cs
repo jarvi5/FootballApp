@@ -27,6 +27,13 @@ namespace FootballApp.Droid
                 Leagues = (IList<League>)response.Data;
                 ListAdapter = new LeaguesListAdapter(this, Leagues);
             }
+            else
+            {
+                SetContentView(Resource.Layout.NotFound);
+                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                FindViewById<TextView>(Resource.Id.errorMessage).Text = response.Message;
+                SetActionBar(toolbar);
+            }
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
