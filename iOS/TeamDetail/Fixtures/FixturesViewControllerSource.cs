@@ -56,6 +56,8 @@ namespace FootballApp.iOS
             Fixture item = DataSource[indexPath.Row];
 
             cell.TextLabel.Text = Text(item);
+            cell.TextLabel.Lines = 0;
+            cell.TextLabel.LineBreakMode = UILineBreakMode.WordWrap;
             cell.DetailTextLabel.Text = Detail(item);
 
             return cell;

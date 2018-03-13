@@ -73,7 +73,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="669">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="669" numberOfLines="2">
                                             <rect key="frame" x="79" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -124,7 +124,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections/>
-                    <navigationItem key="navigationItem" id="5783" title="Team Detail">
+                    <navigationItem key="navigationItem" id="5783">
                         <barButtonItem key="rightBarButtonItem" id="5784" title="Settings">
                             <connections>
                                 <segue id="5996" destination="2459" kind="show" identifier="SettingsSegue"/>

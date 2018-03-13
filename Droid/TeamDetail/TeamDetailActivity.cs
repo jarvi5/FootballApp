@@ -7,6 +7,9 @@ using Android.Views;
 using Android.Content;
 using FootballApp.Data;
 using FootballApp.Helpers;
+using FFImageLoading.Views;
+using FFImageLoading;
+using FFImageLoading.Svg.Platform;
 
 namespace FootballApp.Droid
 {
@@ -22,8 +25,27 @@ namespace FootballApp.Droid
             Team = Serialization<Team>.Deserialize(Intent.GetStringExtra("team"));
             SetContentView(Resource.Layout.TeamDetail);
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            ImageViewAsync image = new ImageViewAsync(this);
+            if (!string.IsNullOrEmpty(Team.CrestURI))
+            {
+                ImageService.Instance.LoadUrl(Team.CrestURI)
+                            .DownSampleInDip(40,40)
+                            .WithCustomDataResolver(new SvgDataResolver(200, 0, true))
+                            .WithCustomLoadingPlaceholderDataResolver(new SvgDataResolver(200, 0, true))
+                            .Error(exception =>
+                            {
+                                ImageService.Instance.LoadUrl(Team.CrestURI)
+                                            .Into(image);
+                            })
+                            .Into(image);
+            }
+            TextView title = new TextView(this);
+            title.SetTextColor(Android.Graphics.Color.White);
+            title.Text = Team.TeamName;
+            toolbar.AddView(image);
+            toolbar.AddView(title);
             SetActionBar(toolbar);
-            Title = Team.TeamName;
+            Title = "";
             ViewPager viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
             Fragments = new Android.Support.V4.App.Fragment[]
             {
